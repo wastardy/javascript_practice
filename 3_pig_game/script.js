@@ -37,10 +37,14 @@ const switchPlayer = () => {
     player1.classList.toggle('player--active');
 }
 
+const logFunction = (param) => console.log(`I pass ${param} to arrow function`);
+
 // rolling dice functionality
 btnRoll.addEventListener('click', function() {
     if (isPlaying) {
         const dice = Math.trunc(Math.random() * 6) + 1;
+        
+        logFunction(dice);
 
         diceElement.classList.remove('hidden');
         diceElement.src = `/3_pig_game/img/dice-${dice}.png`;
