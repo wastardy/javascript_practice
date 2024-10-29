@@ -24,6 +24,15 @@ scorePlayer0.textContent = 0;
 scorePlayer1.textContent = 0;
 diceElement.classList.add('hidden');
 
+const switchPlayer = () => {
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+        
+    activePlayer = activePlayer === 0 ? 1 : 0;
+        
+    currnetScore = 0;
+    player0.classList.toggle('player--active');
+    player1.classList.toggle('player--active');
+}
 
 // rolling dice functionality
 btnRoll.addEventListener('click', function() {
@@ -37,11 +46,17 @@ btnRoll.addEventListener('click', function() {
         document.getElementById(`current--${activePlayer}`).textContent = currnetScore;
     } 
     else {
-        // switch to another player
-        document.getElementById(`current--${activePlayer}`).textContent = 0;
-        activePlayer = activePlayer === 0 ? 1 : 0;
-        currnetScore = 0;
-        player0.classList.toggle('player--active');
-        player1.classList.toggle('player--active');
+        switchPlayer();
     }
+});
+
+btnHold.addEventListener('click', function() {
+    scores[activePlayer] += currnetScore;
+    // scores[1] = scores[1] + currnetScore;
+    
+    // console.log(scores[activePlayer]);
+
+    document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+
+    switchPlayer();
 });
